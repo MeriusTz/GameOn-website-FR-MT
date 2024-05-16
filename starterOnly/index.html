@@ -56,68 +56,80 @@
         <div class="content">
           <span class="close"></span>
           <div class="modal-body">
-            <label class="signed"> Merci pour votre inscription </label><br>
-            <input
-            class="btn-submit"
-            type="submit"
-            id="btn-close"
-            value="Fermer"
-          />
+            <div class="submitted">
+              <label class="signed"> Merci pour votre inscription </label><br>
+              <input
+              class="btn-submit"
+              type="submit"
+              id="btn-close"
+              value="Fermer"
+            />
+            </div>
             <form
               name="reserve"
               action="index.html"
               method="get"
-              onsubmit="return validate();"
-            >
+              >
+              <!-- onsubmit="return validate();" -->
               <div for="first">
                 <label class="formData">Prénom</label><br>
                 <input
+                  oninput="validerPrenom(this.value)"
                   class="text-control"
                   type="text"
                   id="first"
                   name="first"
-                  minlength="2"
+                  onsubmit="validate()"
                 /><br>
+                <span id="erreurPrenom" class="messageErreur"></span>
               </div>
               <div
                 class="formData">
                 <label for="last">Nom</label><br>
                 <input 
+                oninput="validerNom(this.value)"
                   class="text-control"
                   type="text"
                   id="last"
                   name="last"
                 /><br>
+                <span id="erreurNom" class="messageErreur"></span>
               </div>
               <div
                 class="formData">
                 <label for="email">E-mail</label><br>
                 <input 
+                oninput="validerEmail(this.value)"
                   class="text-control"
-                  type="email"
+                 
                   id="email"
                   name="email"
                 /><br>
+                <span id="erreurEmail" class="messageErreur"></span>
               </div>
               <div
                 class="formData">
                 <label for="birthdate">Date de naissance</label><br>
                 <input 
+                  onchange="validerNaissance()"
                   class="text-control"
                   type="date"
                   id="birthdate"
                   name="birthdate"
                 /><br>
+                <span id="erreurBirthdate" class="messageErreur"></span>
               </div>
               <div
                 class="formData">
                 <label for="concour">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
-                <input id="concour" type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
+                <input oninput="validerConcour(this.value)" id="concour" type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
+                <span id="erreurConcour" class="messageErreur"></span>
               </div>
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
-              <div
+              <div onclick="validerLocation()"
                 class="formData">
                 <input 
+                  
                   class="checkbox-input"
                   type="radio"
                   id="location1"
@@ -183,6 +195,7 @@
                   <span class="checkbox-icon"></span>
                   Portland</label
                 >
+                <span id="erreurLocation" class="messageErreur"></span>
               </div>
 
               <div
@@ -192,12 +205,14 @@
                   type="checkbox"
                   id="checkbox1"
                   checked
+                  onchange="validerCondition()"
                 />
                 <label class="checkbox2-label" for="checkbox1" required>
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation.
                 </label>
                 <br>
+                <span  id="erreurCondition" class="messageErreur"></span>
                 <input class="checkbox-input" type="checkbox" id="checkbox2" />
                 <label class="checkbox2-label" for="checkbox2">
                   <span class="checkbox-icon"></span>

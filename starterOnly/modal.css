@@ -188,6 +188,11 @@ main {
   margin: 15px auto;
 }
 
+.messageErreur{
+  font-size: 12px;
+  color: red;
+}
+
 label {
   font-family: var(--font-default);
   font-size: 17px;
