@@ -19,11 +19,14 @@ const messageErreur = document.querySelectorAll('.messageErreur');
 
 
   function validerPrenom(prenom) {
+    
       if (prenom.length >= 2) {
           //console.log("Prenom valide")
           messageErreur[0].textContent = "";
+          first.classList.remove("red-border");
           return true
       }
+      first.classList.add("red-border");
       messageErreur[0].textContent = "Veuillez entrer 2 caractères ou plus pour le champ du prénom.";
       //console.log("Prenom Invalide")
       return false
@@ -33,10 +36,12 @@ const messageErreur = document.querySelectorAll('.messageErreur');
       if (nom.length >= 2) {
           //console.log("Nom valide")
           messageErreur[1].textContent = "";
+          last.classList.remove("red-border");
           return true
       }
       messageErreur[1].textContent = "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
       //console.log("Nom Invalide")
+      last.classList.add("red-border");
       return false
   }
 
@@ -45,9 +50,12 @@ const messageErreur = document.querySelectorAll('.messageErreur');
       let emailRegExp = new RegExp("[a-z0-9._-]+@[a-z0-9._-]+\\.[a-z0-9._-]+")
       if (emailRegExp.test(email)) {
           //console.log("Email valide")
+          
           messageErreur[2].textContent = "";
+          mail.classList.remove("red-border");
           return true
         } 
+        mail.classList.add("red-border");
         messageErreur[2].textContent = "E-mail invalide.";
       //console.log("Email Invalide")
       return false
@@ -61,6 +69,7 @@ const messageErreur = document.querySelectorAll('.messageErreur');
     // Vérifier si le champ est vide
     if (dateNaissance === "") {
         messageErreur[3].textContent = "Veuillez saisir votre date de naissance.";
+        birthdate.classList.add("red-border");
         return false;
     }
 
@@ -73,6 +82,7 @@ const messageErreur = document.querySelectorAll('.messageErreur');
     // Vérifier si la date de naissance est dans le futur
     if (dateNaissanceObj > dateActuelle) {
         messageErreur[3].textContent = "La date de naissance ne peut pas être dans le futur.";
+        birthdate.classList.add("red-border");
         return false;
     }
 
@@ -85,11 +95,12 @@ const messageErreur = document.querySelectorAll('.messageErreur');
 
     // Vérifier si l'âge est dans les limites autorisées
     if (age < ageMin || age > ageMax) {
+      birthdate.classList.add("red-border");
       messageErreur[3].textContent = "L'âge doit être compris entre " + ageMin + " et " + ageMax + " ans.";
         return false;
     }
     messageErreur[3].textContent = "";
-   
+    birthdate.classList.remove("red-border");
     return true;
 }
 
@@ -98,10 +109,12 @@ const messageErreur = document.querySelectorAll('.messageErreur');
   function validerConcour(concour) {
       
       if (concour == "") {
-          console.log("Concour INvalide")
+          concours.classList.add("red-border");
+        console.log("Concour INvalide")
           messageErreur[4].textContent = "Completer ce champ.";
           return false
         } 
+        concours.classList.remove("red-border");
         messageErreur[4].textContent = "";
         console.log("Concour valide")
         return true
@@ -142,17 +155,17 @@ const messageErreur = document.querySelectorAll('.messageErreur');
  
     let prenom = document.getElementById("first").value
     let nom = document.getElementById("last").value
-    let email = document.getElementById("email").value
-    let concour = document.getElementById("concour").value
+    let mail = document.getElementById("mail").value
+    let concour = document.getElementById("concours").value
 
-        if(validerPrenom(prenom) && validerNom(nom) && validerEmail(email) && validerNaissance() && validerConcour(concour) && validerLocation() && validerCondition()){
+        if(validerPrenom(prenom) && validerNom(nom) && validerEmail(mail) && validerNaissance() && validerConcour(concour) && validerLocation() && validerCondition()){
              console.log("Formulaire Correct")
             closeForm()
         }
         else{
           validerPrenom(prenom)
           validerNom(nom)
-          validerEmail(email)
+          validerEmail(mail)
           validerNaissance()
           validerConcour(concour)
           validerLocation()

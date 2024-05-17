@@ -102,7 +102,7 @@
                 oninput="validerEmail(this.value)"
                   class="text-control"
                  
-                  id="email"
+                  id="mail"
                   name="email"
                 /><br>
                 <span id="erreurEmail" class="messageErreur"></span>
@@ -122,7 +122,7 @@
               <div
                 class="formData">
                 <label for="concour">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
-                <input oninput="validerConcour(this.value)" id="concour" type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
+                <input oninput="validerConcour(this.value)" id="concours" type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
                 <span id="erreurConcour" class="messageErreur"></span>
               </div>
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
@@ -204,7 +204,7 @@
                   class="checkbox-input"
                   type="checkbox"
                   id="checkbox1"
-                  checked
+                  
                   onchange="validerCondition()"
                 />
                 <label class="checkbox2-label" for="checkbox1" required>

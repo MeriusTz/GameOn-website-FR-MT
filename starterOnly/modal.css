@@ -139,6 +139,10 @@ main {
 
 /* Modal form */
 
+.red-border {
+  border-color: red;
+}
+
 .button {
   background: #fe142f;
   margin-top: 0.5em;
