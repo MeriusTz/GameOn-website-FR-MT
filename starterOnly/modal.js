@@ -188,6 +188,8 @@ submittedBtn.addEventListener("click", closeModal);
 function launchModal() {
   modalBg.style.display = "block";
   modalSubmitted.style.display = "none"
+  document.querySelector('body').classList.add('formOpen');
+  window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
 // close modal form
@@ -195,6 +197,7 @@ function closeModal() {
   modalForm.style.display = "block";
   closeBtn.style.display = "block";
   modalBg.style.display = "none";
+  document.querySelector('body').classList.remove('formOpen');
 }
 
 function closeForm() {
