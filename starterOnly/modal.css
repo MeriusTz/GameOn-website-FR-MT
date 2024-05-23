@@ -184,11 +184,10 @@ main {
   animation-duration: var(--modal-duration);
   background: #232323;
   border-radius: 10px;
-  overflow: hidden;
   position: relative;
   color: #fff;
   padding-top: 10px;
-  
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
 }
 
 .modal-body {
@@ -220,7 +219,7 @@ input {
   width: 100%;
   border-radius: 8px;
   font-size: 20px;
-  height: 48px;
+  
 }
 .formData[data-error]::after {
   content: attr(data-error);
@@ -530,14 +529,19 @@ footer {
     margin-top: 50px;
     text-align: center;
   }
+
+  .modal-body{
+  max-height: calc(100vh - 100px); /* adjust the value to fit your needs */
+  overflow-y: auto; 
+ }
   .bground{
     background-color: rgba(255, 255, 255, 0);
     margin: 20% 0 0 0;
-   
   }
-
+.btn-submit{
+  margin-bottom: 10%;
+}
   .content{
-    
     width: 100%;
     height: 100%;
     max-width:none;
@@ -547,7 +551,6 @@ footer {
   }
   .submitted{
   block-size: 100%;
-  
   }
 }
 

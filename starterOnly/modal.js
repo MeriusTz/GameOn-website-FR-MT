@@ -47,8 +47,8 @@ const messageErreur = document.querySelectorAll('.messageErreur');
 
 
   function validerEmail(email) {
-      let emailRegExp = new RegExp("[a-z0-9._-]+@[a-z0-9._-]+\\.[a-z0-9._-]+")
-      if (emailRegExp.test(email)) {
+    let emailRegExp = new RegExp("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-z]{2,4}$");
+    if (emailRegExp.test(email)) {
           //console.log("Email valide")
           
           messageErreur[2].textContent = "";
@@ -195,13 +195,11 @@ function launchModal() {
 // close modal form
 function closeModal() {
   modalForm.style.display = "block";
-  closeBtn.style.display = "block";
   modalBg.style.display = "none";
   document.querySelector('body').classList.remove('formOpen');
 }
 
 function closeForm() {
   modalForm.style.display = "none";
-  closeBtn.style.display = "none";
   modalSubmitted.style.display = "block"
 }
