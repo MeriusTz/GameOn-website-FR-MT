@@ -142,10 +142,6 @@ main {
 
 /* Modal form */
 
-.red-border {
-  border-color: red;
-}
-
 .button {
   background: #fe142f;
   margin-top: 0.5em;
@@ -197,7 +193,12 @@ main {
 
 .messageErreur{
   font-size: 12px;
-  color: red;
+  color: #e54858;
+  display: block;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  text-align: right;
+  white-space: normal;
 }
 
 label {
@@ -222,15 +223,16 @@ input {
 }
 .formData[data-error]::after {
   content: attr(data-error);
-  font-size: 0.4em;
+  font-size: 12px;
   color: #e54858;
   display: block;
   margin-top: 7px;
   margin-bottom: 7px;
   text-align: right;
-  line-height: 0.3;
+
   opacity: 0;
   transition: 0.3s;
+  white-space: normal;
 }
 .formData[data-error-visible="true"]::after {
   opacity: 1;

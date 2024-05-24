@@ -71,17 +71,16 @@
               method="get"
               >
               <!-- onsubmit="return validate();" -->
-              <div for="first">
-                <label class="formData">Prénom</label><br>
+              <div class="formData">
+                <label for="first">Prénom</label><br>
                 <input
                   oninput="validerPrenom(this.value)"
                   class="text-control"
                   type="text"
                   id="first"
                   name="first"
-                  onsubmit="validate()"
+                  
                 /><br>
-                <span id="erreurPrenom" class="messageErreur"></span>
               </div>
               <div
                 class="formData">
@@ -93,7 +92,6 @@
                   id="last"
                   name="last"
                 /><br>
-                <span id="erreurNom" class="messageErreur"></span>
               </div>
               <div
                 class="formData">
@@ -105,7 +103,6 @@
                   id="mail"
                   name="email"
                 /><br>
-                <span id="erreurEmail" class="messageErreur"></span>
               </div>
               <div
                 class="formData">
@@ -117,13 +114,11 @@
                   id="birthdate"
                   name="birthdate"
                 /><br>
-                <span id="erreurBirthdate" class="messageErreur"></span>
               </div>
               <div
                 class="formData">
                 <label for="concour">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
                 <input oninput="validerConcour(this.value)" id="concours" type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
-                <span id="erreurConcour" class="messageErreur"></span>
               </div>
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
               <div onclick="validerLocation()"

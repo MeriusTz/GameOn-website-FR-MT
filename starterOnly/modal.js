@@ -17,90 +17,92 @@ const closeBtn = document.querySelector(".close");
 const submittedBtn = document.querySelector(".btn-submit");
 const messageErreur = document.querySelectorAll('.messageErreur');
 
+    // Définir l'âge maximum et minimum autorisé
+var ageMax = 120;
+var ageMin = 18;
+
+const messageError = {
+first: 'Veuillez entrer 2 caractères ou plus pour le champ du prénom.',
+last:'Veuillez entrer 2 caractères ou plus pour le champ du nom.',
+email:'E-mail invalide.',
+birthdateNull:'Veuillez saisir votre date de naissance.',
+birthdateFutur:'La date de naissance ne peut pas être dans le futur.',
+birthdateInt:"L'âge doit être compris entre " + ageMin + " et " + ageMax + " ans.",
+concours:'Veuillez renseigner un nombre entre 0 et 99',
+location:'Vous devez choisir une ville.',
+condition:'Vous devez vérifier que vous acceptez les termes et conditions.',
+
+};
+
+function setError(element,messageError){
+  element.parentElement.setAttribute('data-error-visible', 'true');
+  element.parentElement.setAttribute('data-error', messageError);
+}
+
+function hideError(element){
+  element.parentElement.removeAttribute('data-error-visible');
+  element.parentElement.removeAttribute('data-error');
+}
 
   function validerPrenom(prenom) {
-    
-      if (prenom.length >= 2) {
-          //console.log("Prenom valide")
-          messageErreur[0].textContent = "";
-          first.classList.remove("red-border");
-          return true
-      }
-      first.classList.add("red-border");
-      messageErreur[0].textContent = "Veuillez entrer 2 caractères ou plus pour le champ du prénom.";
-      //console.log("Prenom Invalide")
-      return false
-  }
+    if (prenom.length >= 2) {
+      hideError(first)
+      return true;
+    }
+    setError(first,messageError["first"])
+    return false;
+}
 
   function validerNom(nom) {
+    
       if (nom.length >= 2) {
-          //console.log("Nom valide")
           messageErreur[1].textContent = "";
-          last.classList.remove("red-border");
-          return true
+          hideError(last)
+          return true;
       }
-      messageErreur[1].textContent = "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
-      //console.log("Nom Invalide")
-      last.classList.add("red-border");
-      return false
+      setError(last,messageError["last"])
+      return false;
   }
 
 
   function validerEmail(email) {
     let emailRegExp = new RegExp("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-z]{2,4}$");
     if (emailRegExp.test(email)) {
-          //console.log("Email valide")
-          
-          messageErreur[2].textContent = "";
-          mail.classList.remove("red-border");
-          return true
+          hideError(mail)
+          return true;
         } 
-        mail.classList.add("red-border");
-        messageErreur[2].textContent = "E-mail invalide.";
-      //console.log("Email Invalide")
-      return false
+        setError(mail,messageError["email"])
+      return false;
   
   }
   
   function validerNaissance() {
     // Récupérer la valeur du champ date de naissance
     var dateNaissance = document.getElementById('birthdate').value;
-
     // Vérifier si le champ est vide
     if (dateNaissance === "") {
-        messageErreur[3].textContent = "Veuillez saisir votre date de naissance.";
-        birthdate.classList.add("red-border");
+      setError(birthdate,messageError["birthdateNull"]);
         return false;
     }
 
     // Obtenir la date actuelle
     var dateActuelle = new Date();
-
     // Convertir la valeur du champ en objet Date
     var dateNaissanceObj = new Date(dateNaissance);
 
     // Vérifier si la date de naissance est dans le futur
     if (dateNaissanceObj > dateActuelle) {
-        messageErreur[3].textContent = "La date de naissance ne peut pas être dans le futur.";
-        birthdate.classList.add("red-border");
+      setError(birthdate,messageError["birthdateFutur"]);
         return false;
     }
-
-    // Définir l'âge maximum et minimum autorisé
-    var ageMax = 120;
-    var ageMin = 18;
-
     // Calculer l'âge en années
     var age = dateActuelle.getFullYear() - dateNaissanceObj.getFullYear();
-
     // Vérifier si l'âge est dans les limites autorisées
     if (age < ageMin || age > ageMax) {
-      birthdate.classList.add("red-border");
-      messageErreur[3].textContent = "L'âge doit être compris entre " + ageMin + " et " + ageMax + " ans.";
+      setError(birthdate,messageError["birthdateInt"]);
         return false;
     }
-    messageErreur[3].textContent = "";
-    birthdate.classList.remove("red-border");
+    hideError(birthdate);
     return true;
 }
 
@@ -109,15 +111,11 @@ const messageErreur = document.querySelectorAll('.messageErreur');
   function validerConcour(concour) {
       
       if (concour == "") {
-          concours.classList.add("red-border");
-        console.log("Concour INvalide")
-          messageErreur[4].textContent = "Completer ce champ.";
-          return false
+          setError(concours,messageError["concours"]);
+          return false;
         } 
-        concours.classList.remove("red-border");
-        messageErreur[4].textContent = "";
-        console.log("Concour valide")
-        return true
+        hideError(concours);
+        return true;
   
   }
 
@@ -126,25 +124,21 @@ const messageErreur = document.querySelectorAll('.messageErreur');
     // Loop dans radio 
     for (var i = 0, length = radios.length; i < length; i++) {
       if (radios[i].checked == true) {
-        console.log('radio valide');
-        messageErreur[5].textContent = "";
+        messageErreur[0].textContent = "";
         return true;
       }
     }
-    messageErreur[5].textContent = "Vous devez choisir une option.";
-    console.log('radio invalid');
-    return false
+    messageErreur[0].textContent = "Vous devez choisir une option.";
+    return false;
   }
 
   function validerCondition() {
     if (document.getElementById("checkbox1").checked == true) {
-      console.log("condition valide")
-      messageErreur[6].textContent = "";
-      return true
+      messageErreur[1].textContent = "";
+      return true;
     }
-    messageErreur[6].textContent = "Vous devez vérifier que vous acceptez les termes et conditions.";
-      console.log("Vous devez vérifier que vous acceptez les termes et conditions.")
-      return false
+    messageErreur[1].textContent = "Vous devez vérifier que vous acceptez les termes et conditions.";
+      return false;
 
     
   }
@@ -159,7 +153,6 @@ const messageErreur = document.querySelectorAll('.messageErreur');
     let concour = document.getElementById("concours").value
 
         if(validerPrenom(prenom) && validerNom(nom) && validerEmail(mail) && validerNaissance() && validerConcour(concour) && validerLocation() && validerCondition()){
-             console.log("Formulaire Correct")
             closeForm()
         }
         else{
@@ -170,7 +163,7 @@ const messageErreur = document.querySelectorAll('.messageErreur');
           validerConcour(concour)
           validerLocation()
           validerCondition()
-            console.log("Formulaire InCorrect")
+
         }
 
   })
