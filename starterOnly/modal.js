@@ -44,6 +44,24 @@ function hideError(element){
   element.parentElement.removeAttribute('data-error');
 }
 
+function errorCheckbox(id,text){
+  let conteneur = document.getElementById(id);
+  let existingSpan = conteneur.querySelector('span.messageErreur');
+  
+  if (!existingSpan) { // Ajout seulement s'il n'y a pas déjà un message d'erreur
+    let span = document.createElement('span');
+    span.className = 'messageErreur';
+    span.textContent = text;
+    conteneur.appendChild(span);
+  }
+  
+}
+function validCheckbox(id) {
+  let conteneur = document.getElementById(id);
+  let span = conteneur.querySelector('span.messageErreur');
+    conteneur.removeChild(span);
+}
+
   function validerPrenom(prenom) {
     if (prenom.length >= 2) {
       hideError(first)
@@ -119,26 +137,31 @@ function hideError(element){
   
   }
 
+
+  
   function validerLocation() {
     var radios = document.getElementsByName('location');
     // Loop dans radio 
     for (var i = 0, length = radios.length; i < length; i++) {
       if (radios[i].checked == true) {
-        messageErreur[0].textContent = "";
+        validCheckbox("locationConteneur");
         return true;
       }
     }
-    messageErreur[0].textContent = "Vous devez choisir une option.";
+    errorCheckbox("locationConteneur",messageError["location"]);
     return false;
   }
 
+
+
   function validerCondition() {
     if (document.getElementById("checkbox1").checked == true) {
-      messageErreur[1].textContent = "";
+      validCheckbox("conditionConteneur");
       return true;
     }
-    messageErreur[1].textContent = "Vous devez vérifier que vous acceptez les termes et conditions.";
-      return false;
+
+        errorCheckbox("conditionConteneur",messageError["condition"]);
+        return false;
 
     
   }
