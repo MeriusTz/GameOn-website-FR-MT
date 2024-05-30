@@ -58,8 +58,11 @@ function errorCheckbox(id,text){
 }
 function validCheckbox(id) {
   let conteneur = document.getElementById(id);
+  let existingSpan = conteneur.querySelector('span.messageErreur');
   let span = conteneur.querySelector('span.messageErreur');
+  if (existingSpan) {
     conteneur.removeChild(span);
+  }
 }
 
   function validerPrenom(prenom) {
@@ -74,7 +77,6 @@ function validCheckbox(id) {
   function validerNom(nom) {
     
       if (nom.length >= 2) {
-          messageErreur[1].textContent = "";
           hideError(last)
           return true;
       }
